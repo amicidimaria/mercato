@@ -63,8 +63,8 @@
             <label for="offerta" style="font-size: 20px; line-height: 28px;"><b>Offerta</b></label><br>
             <input type="text" id="offerta" style="width: 70%; height: 30px; margin-top: 8px; font-size: 18px;" name="offerta" required><br><br>
 
-			 <label for="password" style="font-size: 20px; line-height: 28px;"><b>Password</b></label><br>
-			 <input type="password" id="password" style="width: 70%; height: 30px; margin-top: 8px; font-size: 18px;" name="password" required><br><br>            
+	    <label for="password" style="font-size: 20px; line-height: 28px;"><b>Password</b></label><br>
+	    <input type="password" id="password" style="width: 70%; height: 30px; margin-top: 8px; font-size: 18px;" name="password" required><br><br>            
 
             <input type="submit" style="font-size: 18px; color: #fff; background-color: #217715; height: 40px; width: 80px;" value="Invia">
         </form>
@@ -80,6 +80,7 @@
                 const squadra = document.getElementById("squadra").value;
                 const nome = document.getElementById("nome").value;            
                 const offerta = document.getElementById("offerta").value;
+		const password = document.getElementById("password").value;
 
                 // Password predefinite per ogni squadra
                 const passwords = {
