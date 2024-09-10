@@ -74,62 +74,63 @@
 
         <script>
             document.getElementById("airtableForm").addEventListener("submit", function(event) {
-                event.preventDefault();
+    event.preventDefault();
 
-                // Ottieni i valori inseriti nel form
-                const squadra = document.getElementById("squadra").value;
-                const nome = document.getElementById("nome").value;            
-                const offerta = document.getElementById("offerta").value;
-		const password = document.getElementById("password").value;
+    // Ottieni i valori inseriti nel form
+    const squadra = document.getElementById("squadra").value;
+    const nome = document.getElementById("nome").value;
+    const offerta = document.getElementById("offerta").value;
+    const password = document.getElementById("password").value;
 
-                // Password predefinite per ogni squadra
-                const passwords = {
-                    "Gonzi": "1234",
-                    "Chivas": "5678",
-                    "Minturno": "1111",
-                    "Califfo": "2222",
-                    "BDS": "3333",
-                    "Diavolone": "4444",
-                    "Pettiparquet": "5555",
-                    "Pandamonio": "6666",
-                    "Conte": "7777",
-                    "Legia": "8888"
-                };
-            
-                // Controlla che la password inserita sia corretta
-                if (passwords[squadra] !== password) {
-                    alert("Password errata per la squadra selezionata!");
-                    return;
-                }                
+    // Password predefinite per ogni squadra
+    const passwords = {
+        "Gonzi": "1234",
+        "Chivas": "5678",
+        "Minturno": "1111",
+        "Califfo": "2222",
+        "BDS": "3333",
+        "Diavolone": "4444",
+        "Pettiparquet": "5555",
+        "Pandamonio": "6666",
+        "Conte": "7777",
+        "Legia": "8888"
+    };
 
-                // Crea l'oggetto con i dati da inviare
-                const dati = {
-                    "fields": {
-                        "squadra": squadra,
-                        "nome": nome,
-                        "offerta": offerta                    
-                    }
-                };
+    // Controlla che la password inserita sia corretta
+    if (passwords[squadra] !== password) {
+        alert("Password errata per la squadra selezionata!");
+        return;
+    }
 
-                // Invia una richiesta POST a Airtable
-                fetch("https://api.airtable.com/v0/app6p5vVXEELFos5u/mercato", {
-                    method: "POST",
-                    headers: {
-                        "Authorization": "Bearer patW39QnkKpLDz8QD.3167377d10b9b97fe0125a2b072f5982f290f6b81fcaba5e22322cfc7d8888cb",
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(dati)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById("risultato1").textContent = "Dati inviati con successo!";
-                    document.getElementById("risultato2").textContent = "L'elenco si aggiornerà automaticamente ogni 3 secondi";                
-                })
-                .catch(error => {
-                    document.getElementById("risultato").textContent = "Errore durante l'invio dei dati!";
-                    console.error("Errore:", error);
-                });
-            });
+    // Crea l'oggetto con i dati da inviare
+    const dati = {
+        "fields": {
+            "squadra": squadra,
+            "nome": nome,
+            "offerta": offerta
+        }
+    };
+
+    // Invia una richiesta POST a Airtable
+    fetch("https://api.airtable.com/v0/app6p5vVXEELFos5u/mercato", {
+        method: "POST",
+        headers: {
+            "Authorization": "Bearer patW39QnkKpLDz8QD.3167377d10b9b97fe0125a2b072f5982f290f6b81fcaba5e22322cfc7d8888cb",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(dati)
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("risultato1").textContent = "Dati inviati con successo!";
+        document.getElementById("risultato2").textContent = "L'elenco si aggiornerà automaticamente ogni 3 secondi";                
+    })
+    .catch(error => {
+        document.getElementById("risultato1").textContent = "Errore durante l'invio dei dati!";
+        console.error("Errore:", error);
+    });
+});
+
         </script>
 
         <h1 style="padding-top: 20px; border-top: 3px solid #217715; margin-top: 30px; margin-bottom: 10px;">Elenco offerte</h1>
